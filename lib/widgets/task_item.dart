@@ -22,8 +22,6 @@ class TaskItem extends ConsumerWidget {
         child: ListTile(
           contentPadding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
           title: Text(
-            //"${task.id.toString()}. Görev",
-            //"${task.id.toString()}. ${task.title}",
             task.title,
             overflow: TextOverflow.ellipsis,
             maxLines: 3,
@@ -35,6 +33,7 @@ class TaskItem extends ConsumerWidget {
   }
 
   void onTab(BuildContext context, TaskModel taskModel) {
+    //Navigator.pushNamed(context, AppPages.taskDetail);
     Navigator.push(
       context,
       MaterialPageRoute(

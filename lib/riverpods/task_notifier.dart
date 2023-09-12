@@ -21,19 +21,17 @@ class TaskNotifier extends StateNotifier<List<TaskModel>> {
     ];
   }
 
-  ///Listede bulunan ve option değeri always olan görevlerin sayısını döndürür.
+  ///Listede bulunan ve option değeri completed olan görevlerin sayısını döndürür.
   int countCompletedTask() {
     return state.where((element) => element.option == Option.completed).length;
   }
 
-  ///Listede bulunan ve option değeri never olan görevlerin sayısını döndürür.
+  ///Listede bulunan ve option değeri uncompleted olan görevlerin sayısını döndürür.
   int countUncompletedTask() {
     return state.where((element) => element.option == Option.uncompleted).length;
   }
 
-  ///Görevlerin totaldeki tamamlanma yüzdesi. <br>
-  ///10 görev. 8 always, 2 never ise 800/10 = %80 <br>
-  ///10 görev. 6 always, 2 generally, 2 rarely ise (600 + 132 + 66) / 10 = %79,8
+  ///Görevlerin totaldeki tamamlanma yüzdesi.
   double getCompletionPercentage() {
     return (countCompletedTask() * 100 + countUncompletedTask() * 0) / state.length;
   }

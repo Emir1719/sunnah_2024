@@ -22,7 +22,7 @@ class Home extends ConsumerWidget {
             const Percent(),
             Expanded(
               child: ListView.separated(
-                padding: const EdgeInsets.only(bottom: 20, left: 20, right: 20),
+                padding: const EdgeInsets.only(bottom: 20, left: 26, right: 20),
                 itemCount: taskList.length,
                 separatorBuilder: (context, index) => const SizedBox(height: 15),
                 itemBuilder: (context, index) {

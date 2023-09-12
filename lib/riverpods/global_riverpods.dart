@@ -4,8 +4,6 @@ import 'package:sunnah_2024/riverpods/task_notifier.dart';
 import 'package:sunnah_2024/riverpods/task_percent.dart';
 import 'package:sunnah_2024/sevices/task_service.dart';
 
-final dataListProvider = StateProvider<List<TaskModel>>((ref) => []);
-
 ///Bütün görevlerin listesini döndürür.
 final displayAllTaskProvider = StateNotifierProvider<TaskNotifier, List<TaskModel>>((ref) {
   return TaskNotifier();
@@ -22,13 +20,16 @@ final taskPercentProvider = StateNotifierProvider<TaskPercentNotifier, double>((
   return TaskPercentNotifier();
 });
 
-///Görevlerin bulunduğu servis.
-final taskServiceProvider = Provider<TaskService>((ref) {
-  return TaskService();
-});
-
 ///Servise giderek jsondaki veriyi liste olarak döndürür.
 final getTasksProvider = FutureProvider<List>((ref) async {
-  final service = ref.read(taskServiceProvider);
+  final service = TaskService();
   return service.getTasksLocal();
 });
+
+/*final taskButtonNameProvider = Provider<String>((ref) {
+  final task = ref.read(currentTaskProvider);
+  if (task.option == Option.uncompleted) {
+    return "Görevi Tamamla";
+  }
+  return "Vazgeç";
+});*/

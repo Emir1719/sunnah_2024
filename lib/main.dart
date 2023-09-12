@@ -24,6 +24,8 @@ class MainApp extends StatelessWidget {
       title: "Sünnet Rehberi",
       debugShowCheckedModeBanner: false,
       theme: ThemeLight().theme(),
+      //onGenerateRoute: AppRoute().generator,
+      //initialRoute: AppPages.home,
       home: const Home(),
     );
   }

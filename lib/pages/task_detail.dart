@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sunnah_2024/constants/style.dart';
 import 'package:sunnah_2024/locator.dart';
+import 'package:sunnah_2024/models/option.dart';
 import 'package:sunnah_2024/riverpods/global_riverpods.dart';
-import 'package:sunnah_2024/widgets/come_back_button.dart';
 import 'package:sunnah_2024/widgets/video_button.dart';
 
 ///Video player'ın bulunduğu alan.
@@ -13,6 +13,7 @@ class TaskDetail extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     var task = ref.watch(currentTaskProvider);
+    var allTask = ref.watch(displayAllTaskProvider.notifier);
     var style = locator<ProjectStyle>();
 
     return SafeArea(
@@ -40,11 +41,19 @@ class TaskDetail extends ConsumerWidget {
                     style: style.videoDescriptionText,
                   ),
                 ),
-                //const ComeBackButton(),
                 VideoButton(
-                  label: "Görevi Tamamla",
-                  icon: Icons.task_alt,
-                  onPressed: () {},
+                  label: task.option == Option.uncompleted ? "Görevi Tamamla" : "Vazgeç",
+                  style: style.videoButton(task.option),
+                  icon: task.option == Option.uncompleted ? Icons.task_alt : Icons.cancel_outlined,
+                  onPressed: () {
+                    if (task.option == Option.uncompleted) {
+                      ref.read(displayAllTaskProvider.notifier).edit(task.id, Option.completed);
+                    } else {
+                      ref.read(displayAllTaskProvider.notifier).edit(task.id, Option.uncompleted);
+                    }
+                    ref.read(taskPercentProvider.notifier).chance(allTask.getCompletionPercentage());
+                    Navigator.pop(context);
+                  },
                 )
               ],
             ),

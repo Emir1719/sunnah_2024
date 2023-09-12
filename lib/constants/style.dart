@@ -83,15 +83,19 @@ class ProjectStyle {
     );
   }
 
-  ButtonStyle videoButton = ElevatedButton.styleFrom(
-    fixedSize: const Size.fromHeight(40),
-    backgroundColor: Colors.transparent,
-    foregroundColor: ProjectColor().mettalicGreen,
-    shadowColor: Colors.transparent,
-    side: BorderSide(width: 1, color: ProjectColor().mettalicGreen),
-    textStyle: const TextStyle(fontSize: 15),
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(8.0),
-    ),
-  );
+  ButtonStyle videoButton(Option option) {
+    var color = option == Option.uncompleted ? ProjectColor().mettalicGreen : Colors.red;
+    videoButtonTitle = baseTextStyle.copyWith(fontSize: 18, color: color);
+    return ElevatedButton.styleFrom(
+      fixedSize: const Size.fromHeight(40),
+      backgroundColor: Colors.transparent,
+      foregroundColor: color,
+      shadowColor: Colors.transparent,
+      side: BorderSide(width: 1, color: color),
+      textStyle: TextStyle(fontSize: 15, color: color),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8.0),
+      ),
+    );
+  }
 }

@@ -4,9 +4,10 @@ import 'package:sunnah_2024/constants/style.dart';
 import 'package:sunnah_2024/locator.dart';
 import 'package:sunnah_2024/models/option.dart';
 import 'package:sunnah_2024/riverpods/global_riverpods.dart';
+import 'package:sunnah_2024/widgets/appbar.dart';
 import 'package:sunnah_2024/widgets/video_button.dart';
 
-///Video player'ın bulunduğu alan.
+///Seçilen görevin açıklamasının olduğu sayfa.
 class TaskDetail extends ConsumerWidget {
   const TaskDetail({super.key});
 
@@ -18,7 +19,7 @@ class TaskDetail extends ConsumerWidget {
 
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(title: Text("Sünnet Rehberi", style: style.appbarTitle)),
+        appBar: const ProjectAppBar(),
         body: Padding(
           padding: const EdgeInsets.all(20.0),
           child: SingleChildScrollView(

@@ -21,6 +21,40 @@ class TaskNotifier extends StateNotifier<List<TaskModel>> {
     ];
   }
 
+  List<TaskModel> getTaskListOfIsland(int islandID) {
+    List<TaskModel> tasks = [];
+    int start = 0, end = 20;
+    switch (islandID) {
+      case 2:
+        start = 21;
+        end = 40;
+        break;
+      case 3:
+        start = 41;
+        end = 60;
+        break;
+      case 4:
+        start = 61;
+        end = 80;
+        break;
+      case 5:
+        start = 81;
+        end = 100;
+        break;
+      case 6:
+        start = 101;
+        end = 120;
+        break;
+    }
+    for (var task in state) {
+      int taskID = int.tryParse(task.id) ?? 0;
+      if (taskID >= start && taskID <= end) {
+        tasks.add(task);
+      }
+    }
+    return tasks;
+  }
+
   ///Listede bulunan ve option değeri completed olan görevlerin sayısını döndürür.
   int countCompletedTask() {
     return state.where((element) => element.option == Option.completed).length;

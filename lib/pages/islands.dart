@@ -10,10 +10,10 @@ class Islands extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: const ProjectAppBar(),
-        body: Column(
+    return Scaffold(
+      appBar: const ProjectAppBar(),
+      body: SafeArea(
+        child: Column(
           children: [
             const Percent(),
             Expanded(

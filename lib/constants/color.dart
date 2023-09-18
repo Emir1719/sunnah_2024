@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 
 class ProjectColor {
-  final white = const Color(0xffF8F9FA); //background
-  final infoIcon = const Color(0xff737474);
-  final green = Colors.green;
-  final mettalicGreen = const Color(0xff24855B);
-  final whiteGreen = const Color(0xffF7FCFC);
-  //color: Color(0xffF9FAFD), // Strong White
+  final primary = const Color(0xff24855B); //mettalicGreen
+  final secondary = Colors.green; //progress
+  final background = const Color(0xffF8F9FA); //white
 
+  ///primary rengi Color'dan MaterialColor'a çevrildi.
   MaterialColor appGreen = const MaterialColor(0xff24855B, {
     50: Color(0xff24855B),
     100: Color(0xff24855B),

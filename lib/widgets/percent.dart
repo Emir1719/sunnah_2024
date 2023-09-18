@@ -24,8 +24,8 @@ class Percent extends ConsumerWidget {
               child: LinearProgressIndicator(
                 value: percent / 100,
                 minHeight: 15,
-                color: color.green,
-                backgroundColor: color.green.shade200,
+                color: color.secondary,
+                backgroundColor: color.secondary.shade200,
               ),
             ),
           ),

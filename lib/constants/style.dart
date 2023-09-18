@@ -84,7 +84,7 @@ class ProjectStyle {
   }
 
   ButtonStyle videoButton(Option option) {
-    var color = option == Option.uncompleted ? ProjectColor().mettalicGreen : Colors.red;
+    var color = option == Option.uncompleted ? ProjectColor().primary : Colors.red;
     videoButtonTitle = baseTextStyle.copyWith(fontSize: 18, color: color);
     return ElevatedButton.styleFrom(
       fixedSize: const Size.fromHeight(40),

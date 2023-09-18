@@ -10,12 +10,13 @@ class Home extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var taskList = ref.watch(displayAllTaskProvider.notifier).getTaskListOfIsland(1);
+    //var taskList = ref.watch(displayAllTaskProvider.notifier).getTaskListOfIsland(1);
+    var taskList = ref.watch(displayAllTaskProvider);
 
-    return SafeArea(
-      child: Scaffold(
-        appBar: const ProjectAppBar(),
-        body: ListView.separated(
+    return Scaffold(
+      appBar: const ProjectAppBar(),
+      body: SafeArea(
+        child: ListView.separated(
           padding: const EdgeInsets.all(20).copyWith(left: 26),
           itemCount: taskList.length,
           separatorBuilder: (context, index) => const SizedBox(height: 15),

@@ -22,8 +22,7 @@ class TaskNotifier extends StateNotifier<List<TaskModel>> {
   }
 
   List<TaskModel> getTaskListOfIsland(int islandID) {
-    List<TaskModel> tasks = [];
-    int start = 0, end = 20;
+    int start = 0, end = 20; //case 1
     switch (islandID) {
       case 2:
         start = 21;
@@ -46,13 +45,11 @@ class TaskNotifier extends StateNotifier<List<TaskModel>> {
         end = 120;
         break;
     }
-    for (var task in state) {
-      int taskID = int.tryParse(task.id) ?? 0;
-      if (taskID >= start && taskID <= end) {
-        tasks.add(task);
-      }
-    }
-    return tasks;
+    var result = state.where((element) {
+      int taskID = int.tryParse(element.id) ?? 0;
+      return taskID >= start && taskID <= end;
+    }).toList();
+    return result;
   }
 
   ///Listede bulunan ve option değeri completed olan görevlerin sayısını döndürür.

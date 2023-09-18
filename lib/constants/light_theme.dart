@@ -9,7 +9,7 @@ class ThemeLight {
   ThemeData theme() {
     return ThemeData(
       fontFamily: "Roboto",
-      scaffoldBackgroundColor: _color.white,
+      scaffoldBackgroundColor: _color.background,
       primarySwatch: _color.appGreen,
       appBarTheme: _appBarTheme(),
     );
@@ -19,12 +19,14 @@ class ThemeLight {
     return AppBarTheme(
       centerTitle: true,
       elevation: 2,
-      color: _color.mettalicGreen,
+      color: _color.primary,
       titleTextStyle: const TextStyle(fontSize: 20),
       systemOverlayStyle: SystemUiOverlayStyle(
-        statusBarColor: _color.mettalicGreen,
+        statusBarColor: _color.primary,
         statusBarIconBrightness: Brightness.light, //for android light icon
         statusBarBrightness: Brightness.dark, //for ios light icon
+        systemNavigationBarColor: _color.background,
+        systemNavigationBarIconBrightness: Brightness.dark,
       ),
     );
   }

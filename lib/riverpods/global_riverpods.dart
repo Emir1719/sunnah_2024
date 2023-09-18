@@ -25,11 +25,3 @@ final getTasksProvider = FutureProvider<List>((ref) async {
   final service = TaskService();
   return service.getTasksLocal();
 });
-
-/*final taskButtonNameProvider = Provider<String>((ref) {
-  final task = ref.read(currentTaskProvider);
-  if (task.option == Option.uncompleted) {
-    return "Görevi Tamamla";
-  }
-  return "Vazgeç";
-});*/

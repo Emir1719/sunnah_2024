@@ -5,7 +5,7 @@ import 'package:sunnah_2024/locator.dart';
 import 'package:sunnah_2024/models/option.dart';
 import 'package:sunnah_2024/riverpods/global_riverpods.dart';
 import 'package:sunnah_2024/widgets/appbar.dart';
-import 'package:sunnah_2024/widgets/video_button.dart';
+import 'package:sunnah_2024/widgets/app_button.dart';
 
 ///Seçilen görevin açıklamasının olduğu sayfa.
 class TaskDetail extends ConsumerWidget {
@@ -17,10 +17,10 @@ class TaskDetail extends ConsumerWidget {
     var allTask = ref.watch(displayAllTaskProvider.notifier);
     var style = locator<ProjectStyle>();
 
-    return SafeArea(
-      child: Scaffold(
-        appBar: const ProjectAppBar(),
-        body: Padding(
+    return Scaffold(
+      appBar: const ProjectAppBar(),
+      body: SafeArea(
+        child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: SingleChildScrollView(
             child: Column(
@@ -42,7 +42,7 @@ class TaskDetail extends ConsumerWidget {
                     style: style.videoDescriptionText,
                   ),
                 ),
-                VideoButton(
+                AppButton(
                   label: task.option == Option.uncompleted ? "Görevi Tamamla" : "Vazgeç",
                   style: style.videoButton(task.option),
                   icon: task.option == Option.uncompleted ? Icons.task_alt : Icons.cancel_outlined,

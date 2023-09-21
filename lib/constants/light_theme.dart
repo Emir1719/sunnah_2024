@@ -12,6 +12,8 @@ class ThemeLight {
       scaffoldBackgroundColor: _color.background,
       primarySwatch: _color.appGreen,
       appBarTheme: _appBarTheme(),
+      bottomNavigationBarTheme: customBottomNavBarTheme(),
+      dividerTheme: customDividerTheme,
     );
   }
 
@@ -30,4 +32,19 @@ class ThemeLight {
       ),
     );
   }
+
+  BottomNavigationBarThemeData customBottomNavBarTheme() {
+    return BottomNavigationBarThemeData(
+      selectedItemColor: _color.primary, // Seçilen öğenin rengi
+      unselectedItemColor: Colors.grey[600], // Seçilmemiş öğenin rengi
+      showUnselectedLabels: true, // Seçilmemiş öğenin etiketini gösterme
+      type: BottomNavigationBarType.fixed, // Öğe sayısı değişmeyecekse bu türü kullanın
+      elevation: 10.0, // Çizginin kalınlığı
+    );
+  }
+
+  DividerThemeData customDividerTheme = const DividerThemeData(
+    color: Colors.blue, // Çizgi rengi
+    thickness: 2.0, // Çizgi kalınlığı
+  );
 }

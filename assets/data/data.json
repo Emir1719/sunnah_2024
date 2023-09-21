@@ -78,12 +78,6 @@
         "link": ""
     },
     {
-        "id": 13,
-        "title": "Abdestte burun temizliğini sol elle yapmak",
-        "description": "Abdestte burna su verdikten sonra temizlemeyi sol el ile yapmak. (İbn-i Mâce Taharet 6, Müslim Taharet 32)",
-        "link": ""
-    },
-    {
         "id": 14,
         "title": "Yemekten önce ve sonra elleri yıkamak",
         "description": "Yemekten önce ve sonra elleri yıkamak. [Tirmizî, Şemâil, 27.bab, no:189.]",
@@ -172,5 +166,11 @@
         "title": "Tebliğ Etmek",
         "description": "İnsanlara İslam'ı güzel ve tatlı bir üslupla anlatmak...",
         "link": "P79my65IpEk"
+    },
+    {
+        "id": 29,
+        "title": "Abdestte burun temizliğini sol elle yapmak",
+        "description": "Abdestte burna su verdikten sonra temizlemeyi sol el ile yapmak. (İbn-i Mâce Taharet 6, Müslim Taharet 32)",
+        "link": ""
     }
 ]

@@ -5,6 +5,7 @@ import 'package:sunnah_2024/locator.dart';
 import 'package:sunnah_2024/models/task_model.dart';
 import 'package:sunnah_2024/pages/task_detail.dart';
 import 'package:sunnah_2024/riverpods/global_riverpods.dart';
+import 'package:sunnah_2024/route/navigate.dart';
 
 ///İnfo - Sünnet - Dropdownbutton bulunduran bir yapı.
 class TaskItem extends ConsumerWidget {
@@ -18,7 +19,10 @@ class TaskItem extends ConsumerWidget {
     return Container(
       decoration: style.taskContainer(task.option),
       child: GestureDetector(
-        onTap: () => onTab(context, task),
+        //onTap: () => onTab(context, task),
+        onTap: () {
+          AppNavigate.navigateWithOverride(context, const TaskDetail(), task);
+        },
         child: ListTile(
           contentPadding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
           title: Text(

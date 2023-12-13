@@ -30,3 +30,7 @@ final getTasksProvider = FutureProvider<List>((ref) async {
 final pageProvider = StateNotifierProvider<PageState, int>((ref) {
   return PageState();
 });
+
+final currentCategoryProvider = StateProvider<int>((ref) {
+  return 1;
+});

@@ -11,7 +11,10 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_riverpod: ^2.3.6
+  get: ^4.6.6
   get_it: ^7.6.0
+  path_provider: ^2.1.1
+  sqflite: ^2.3.0
   webview_flutter: ^4.2.2
   youtube_player_iframe: ^4.0.4
 

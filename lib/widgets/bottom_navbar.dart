@@ -10,18 +10,18 @@ class AppBottomNavBar extends ConsumerWidget {
     final pageIndex = ref.watch(pageProvider);
 
     return BottomNavigationBar(
-      onTap: (index) {
-        ref.read(pageProvider.notifier).changePage(index);
-      },
+      onTap: (index) => ref.read(pageProvider.notifier).changePage(index),
       currentIndex: pageIndex,
       showSelectedLabels: false,
       showUnselectedLabels: false,
       iconSize: 30,
+      selectedFontSize: 15,
+      unselectedFontSize: 15,
       type: BottomNavigationBarType.fixed,
       items: const [
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: ""),
-        BottomNavigationBarItem(icon: Icon(Icons.question_answer_rounded), label: ""),
-        BottomNavigationBarItem(icon: Icon(Icons.settings), label: ""),
+        BottomNavigationBarItem(icon: Icon(Icons.home), label: "Ana Sayfa"),
+        BottomNavigationBarItem(icon: Icon(Icons.question_answer_rounded), label: "Soru Cevap"),
+        BottomNavigationBarItem(icon: Icon(Icons.settings), label: "Ayarlar"),
       ],
     );
   }

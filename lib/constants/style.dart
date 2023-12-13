@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:sunnah_2024/constants/color.dart';
-import 'package:sunnah_2024/models/option.dart';
 
 class ProjectStyle {
   TextStyle baseTextStyle = const TextStyle(
@@ -62,11 +61,11 @@ class ProjectStyle {
     );
   }
 
-  BoxDecoration taskContainer(Option option) {
+  BoxDecoration taskContainer(int option) {
     var color = Colors.red;
 
     switch (option) {
-      case Option.completed:
+      case 1:
         color = Colors.green;
         break;
       default:
@@ -83,12 +82,11 @@ class ProjectStyle {
     );
   }
 
-  ButtonStyle videoButton(Option option) {
-    var color = option == Option.uncompleted ? ProjectColor().primary : Colors.red;
+  ButtonStyle videoButton(int option) {
+    var color = option == 0 ? ProjectColor().primary : Colors.red;
     videoButtonTitle = baseTextStyle.copyWith(fontSize: 18, color: color);
     return ElevatedButton.styleFrom(
       fixedSize: const Size.fromHeight(40),
-      backgroundColor: Colors.transparent,
       foregroundColor: color,
       shadowColor: Colors.transparent,
       side: BorderSide(width: 1, color: color),

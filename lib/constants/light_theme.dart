@@ -12,8 +12,7 @@ class ThemeLight {
       scaffoldBackgroundColor: _color.background,
       primarySwatch: _color.appGreen,
       appBarTheme: _appBarTheme(),
-      bottomNavigationBarTheme: customBottomNavBarTheme(),
-      dividerTheme: customDividerTheme,
+      bottomNavigationBarTheme: _customBottomNavBarTheme(),
     );
   }
 
@@ -22,6 +21,7 @@ class ThemeLight {
       centerTitle: true,
       elevation: 2,
       color: _color.primary,
+      iconTheme: const IconThemeData(color: Colors.white),
       titleTextStyle: const TextStyle(fontSize: 20),
       systemOverlayStyle: SystemUiOverlayStyle(
         statusBarColor: _color.primary,
@@ -33,18 +33,13 @@ class ThemeLight {
     );
   }
 
-  BottomNavigationBarThemeData customBottomNavBarTheme() {
+  BottomNavigationBarThemeData _customBottomNavBarTheme() {
     return BottomNavigationBarThemeData(
       selectedItemColor: _color.primary, // Seçilen öğenin rengi
+      backgroundColor: _color.background,
       unselectedItemColor: Colors.grey[600], // Seçilmemiş öğenin rengi
-      showUnselectedLabels: true, // Seçilmemiş öğenin etiketini gösterme
       type: BottomNavigationBarType.fixed, // Öğe sayısı değişmeyecekse bu türü kullanın
       elevation: 10.0, // Çizginin kalınlığı
     );
   }
-
-  DividerThemeData customDividerTheme = const DividerThemeData(
-    color: Colors.blue, // Çizgi rengi
-    thickness: 2.0, // Çizgi kalınlığı
-  );
 }

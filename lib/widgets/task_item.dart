@@ -1,49 +1,30 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get/get.dart';
 import 'package:sunnah_2024/constants/style.dart';
+import 'package:sunnah_2024/controller/task_controller.dart';
 import 'package:sunnah_2024/locator.dart';
-import 'package:sunnah_2024/models/task_model.dart';
-import 'package:sunnah_2024/pages/task_detail.dart';
-import 'package:sunnah_2024/riverpods/global_riverpods.dart';
-import 'package:sunnah_2024/route/navigate.dart';
 
-///İnfo - Sünnet - Dropdownbutton bulunduran bir yapı.
-class TaskItem extends ConsumerWidget {
-  const TaskItem({super.key});
+///Yeşil/Kırmızı renk - Sünnet bulunduran bir yapı.
+class TaskItem extends StatelessWidget {
+  const TaskItem({Key? key, required this.index}) : super(key: key);
+  final int index;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     final style = locator<ProjectStyle>();
-    var task = ref.watch(currentTaskProvider);
+    var controller = Get.put(TaskController());
 
     return Container(
-      decoration: style.taskContainer(task.option),
-      child: GestureDetector(
-        //onTap: () => onTab(context, task),
-        onTap: () {
-          AppNavigate.navigateWithOverride(context, const TaskDetail(), task);
-        },
-        child: ListTile(
-          contentPadding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-          title: Text(
-            task.title,
-            overflow: TextOverflow.ellipsis,
-            maxLines: 3,
-            style: style.taskTitle,
-          ),
-        ),
-      ),
-    );
-  }
-
-  void onTab(BuildContext context, TaskModel taskModel) {
-    //Navigator.pushNamed(context, AppPages.taskDetail);
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => ProviderScope(
-          overrides: [currentTaskProvider.overrideWithValue(taskModel)],
-          child: const TaskDetail(),
+      decoration: style.taskContainer(controller.currentTask.value.isComplete),
+      child: ListTile(
+        onTap: () => controller.onTabTextItem(index),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+        title: Text(
+          controller.tasks[index].title,
+          overflow: TextOverflow.ellipsis,
+          maxLines: 2,
+          style: style.taskTitle,
         ),
       ),
     );

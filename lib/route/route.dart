@@ -1,9 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:sunnah_2024/pages/home.dart';
-import 'package:sunnah_2024/pages/task_detail.dart';
-import 'package:sunnah_2024/route/pages.dart';
 
 class AppRoute {
   Route<dynamic>? _goto(Widget widget) {
@@ -15,7 +12,7 @@ class AppRoute {
     return CupertinoPageRoute(builder: (contex) => widget);
   }
 
-  Route<dynamic>? generator(RouteSettings settings) {
+  /*Route<dynamic>? generator(RouteSettings settings) {
     Widget page = const Home();
     switch (settings.name) {
       case AppPages.home:
@@ -26,5 +23,5 @@ class AppRoute {
         break;
     }
     return _goto(page);
-  }
+  }*/
 }

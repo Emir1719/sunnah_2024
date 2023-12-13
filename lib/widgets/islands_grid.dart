@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sunnah_2024/pages/tasks.dart';
+import 'package:sunnah_2024/riverpods/global_riverpods.dart';
 import 'package:sunnah_2024/route/navigate.dart';
 
 class IslandGridview extends ConsumerWidget {
@@ -10,7 +11,10 @@ class IslandGridview extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return InkWell(
-      onTap: () => AppNavigate.navigate(context, const Tasks()),
+      onTap: () {
+        ref.read(currentCategoryProvider.notifier).state = id;
+        AppNavigate.navigate(context, const Tasks());
+      },
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

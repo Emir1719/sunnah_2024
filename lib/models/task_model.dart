@@ -22,6 +22,14 @@ class TaskModel {
     };
   }
 
+  Map<String, dynamic> toMapWithoutID() {
+    return <String, dynamic>{
+      'title': title,
+      'description': description,
+      'isComplete': isComplete,
+    };
+  }
+
   factory TaskModel.fromMap(Map<String, dynamic> map) {
     return TaskModel(
       id: map['id'].toString(),

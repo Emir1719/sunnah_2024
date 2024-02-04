@@ -10,16 +10,20 @@ class TaskCompleteButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var controller = Get.put(TaskController());
     final style = locator<ProjectStyle>();
 
-    return Obx(
-      () => AppButton(
-        label: controller.currentTask.value.isComplete == 0 ? "Görevi Tamamla" : "Vazgeç",
-        style: style.videoButton(controller.currentTask.value.isComplete),
-        icon: controller.currentTask.value.isComplete == 0 ? Icons.task_alt : Icons.cancel_outlined,
-        onPressed: controller.onTabCompleteButton,
-      ),
+    return GetBuilder<TaskController>(
+      builder: (controller) {
+        return AppButton(
+          label: controller.getButtonName(),
+          style: style.videoButton(controller.currentTask.value.isComplete),
+          icon: controller.currentTask.value.isComplete == 0 ? Icons.task_alt : Icons.cancel_outlined,
+          onPressed: () {
+            controller.onTabCompleteButton();
+            Navigator.pop(context);
+          },
+        );
+      },
     );
   }
 }

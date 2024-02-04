@@ -14,6 +14,7 @@ class TaskDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     var controller = Get.put(TaskController());
     var style = locator<ProjectStyle>();
+    const space = SizedBox(height: 20);
 
     return Scaffold(
       appBar: const ProjectAppBar(),
@@ -24,22 +25,18 @@ class TaskDetail extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 20),
-                  child: Text(
-                    controller.currentTask.value.title,
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 3,
-                    style: style.videoTitleText,
-                  ),
+                Text(
+                  controller.currentTask.value.title,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 3,
+                  style: style.videoTitleText,
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 20),
-                  child: Text(
-                    controller.currentTask.value.description,
-                    style: style.videoDescriptionText,
-                  ),
+                space,
+                Text(
+                  controller.currentTask.value.description,
+                  style: style.videoDescriptionText,
                 ),
+                space,
                 const TaskCompleteButton(),
               ],
             ),

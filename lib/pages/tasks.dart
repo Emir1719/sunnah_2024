@@ -14,16 +14,31 @@ class Tasks extends StatelessWidget {
 
     return Scaffold(
       appBar: const ProjectAppBar(),
-      body: Builder(builder: (context) {
-        return ListView.separated(
-          padding: const EdgeInsets.all(20).copyWith(left: 26),
-          itemCount: controller.tasks.length,
-          separatorBuilder: (context, index) => const SizedBox(height: 15),
-          itemBuilder: (context, index) {
-            return TaskItem(index: index);
-          },
-        );
-      }),
+      body: FutureBuilder(
+        future: controller.database.getTasks(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          if (snapshot.hasError) {
+            return Text('Error: ${snapshot.error}');
+          }
+          if (!snapshot.hasData || snapshot.data == null) {
+            return const Text('No data available');
+          }
+
+          controller.tasks = snapshot.data!;
+          return ListView.separated(
+            padding: const EdgeInsets.all(20).copyWith(left: 26),
+            itemCount: controller.tasks.length,
+            separatorBuilder: (context, index) => const SizedBox(height: 15),
+            itemBuilder: (context, index) {
+              controller.setCurrentTask(index);
+              return TaskItem(index: index);
+            },
+          );
+        },
+      ),
     );
   }
 }

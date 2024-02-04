@@ -13,20 +13,24 @@ class TaskItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final style = locator<ProjectStyle>();
-    var controller = Get.put(TaskController());
 
-    return Container(
-      decoration: style.taskContainer(controller.currentTask.value.isComplete),
-      child: ListTile(
-        onTap: () => controller.onTabTextItem(index),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-        title: Text(
-          controller.tasks[index].title,
-          overflow: TextOverflow.ellipsis,
-          maxLines: 2,
-          style: style.taskTitle,
-        ),
-      ),
+    return GetBuilder<TaskController>(
+      builder: (controller) {
+        controller.setCurrentTask(index);
+        return Container(
+          decoration: style.taskContainer(controller.currentTask.value.isComplete),
+          child: ListTile(
+            onTap: () => controller.onTabTextItem(index),
+            contentPadding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+            title: Text(
+              controller.currentTask.value.title,
+              overflow: TextOverflow.ellipsis,
+              maxLines: 2,
+              style: style.taskTitle,
+            ),
+          ),
+        );
+      },
     );
   }
 }

@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:sunnah_2024/widgets/islands_grid.dart';
 import 'package:sunnah_2024/widgets/percent.dart';
 
 ///Adaların ve yüzdenin görüntülendiği sayfa.
-class Islands extends ConsumerWidget {
+class Islands extends StatelessWidget {
   const Islands({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return Column(
       children: [
         const Percent(),

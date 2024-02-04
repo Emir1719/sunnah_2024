@@ -15,7 +15,7 @@ class Tasks extends StatelessWidget {
     return Scaffold(
       appBar: const ProjectAppBar(),
       body: FutureBuilder(
-        future: controller.database.getTasks(),
+        future: controller.database.getTasksById(controller.id),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());

@@ -1,8 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:sunnah_2024/pages/islands.dart';
-import 'package:sunnah_2024/riverpods/global_riverpods.dart';
 
+/*
 class AppPages {
   /*static const String home = "/home";
   static const String taskDetail = "/taskDetail";*/
@@ -15,7 +12,7 @@ class AppPages {
 }
 
 final appBarNameProvider = Provider<String>((ref) {
-  final pageIndex = ref.watch(pageProvider);
+  //final pageIndex = ref.watch(pageProvider);
   String name = "Sünnet Rehberi";
   if (pageIndex == 0) {
     name = "Sünnet Rehberi";
@@ -26,3 +23,4 @@ final appBarNameProvider = Provider<String>((ref) {
   }
   return name;
 });
+*/

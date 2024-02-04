@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:sunnah_2024/riverpods/global_riverpods.dart';
 
-class AppBottomNavBar extends ConsumerWidget {
+class AppBottomNavBar extends StatelessWidget {
   const AppBottomNavBar({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final pageIndex = ref.watch(pageProvider);
+  Widget build(BuildContext context) {
+    const pageIndex = 0;
 
     return BottomNavigationBar(
-      onTap: (index) => ref.read(pageProvider.notifier).changePage(index),
+      onTap: (index) {},
       currentIndex: pageIndex,
       showSelectedLabels: false,
       showUnselectedLabels: false,

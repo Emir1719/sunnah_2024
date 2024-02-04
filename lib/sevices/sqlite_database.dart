@@ -7,6 +7,7 @@ import 'package:sunnah_2024/models/task_model.dart';
 
 class SQLiteDatabase {
   final String _taskTable = "Task";
+  late Database _database;
 
   Future<Database> _openTaskDatabase() async {
     var databasesPath = await getDatabasesPath();
@@ -49,9 +50,30 @@ class SQLiteDatabase {
     return tasks;
   }
 
+  Future<List<TaskModel>> getTasksById(int id) async {
+    _database = await _openTaskDatabase();
+    var result = await _database.query(_taskTable, where: 'category = ?', whereArgs: [id]);
+    List<TaskModel> tasks = [];
+    for (var map in result) {
+      tasks.add(TaskModel.fromMap(map));
+    }
+    return tasks;
+  }
+
   Future<void> updateTask(TaskModel task) async {
-    Database database = await _openTaskDatabase();
-    int i = await database.update(_taskTable, task.toMapWithoutID(), where: 'id = ?', whereArgs: [task.id]);
+    _database = await _openTaskDatabase();
+    int i = await _database.update(_taskTable, task.toMapWithoutID(), where: 'id = ?', whereArgs: [task.id]);
     print("$i satır güncellendi.");
+  }
+
+  Future<double> getPercent() async {
+    List<TaskModel> tasks = await getTasks();
+    var complete = 0;
+    for (var element in tasks) {
+      if (element.isComplete == 1) {
+        complete++;
+      }
+    }
+    return ((complete / tasks.length) * 100);
   }
 }

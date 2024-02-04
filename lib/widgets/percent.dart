@@ -12,35 +12,43 @@ class Percent extends StatelessWidget {
   Widget build(BuildContext context) {
     var color = locator<ProjectColor>();
     var style = locator<ProjectStyle>();
+    final controller = Get.put(TaskController());
 
-    return GetBuilder<TaskController>(
-      builder: (controller) {
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-          child: Row(
-            children: [
-              Expanded(
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(5),
-                  child: LinearProgressIndicator(
-                    value: controller.getPercent() / 100,
-                    minHeight: 15,
-                    color: color.secondary,
-                    backgroundColor: color.secondary.shade200,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+      child: FutureBuilder(
+          future: controller.getPercent(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator());
+            }
+            if (snapshot.hasError) {
+              return Text('Error: ${snapshot.error}');
+            }
+
+            return Row(
+              children: [
+                Expanded(
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(5),
+                    child: LinearProgressIndicator(
+                      value: snapshot.data! / 100,
+                      minHeight: 15,
+                      color: color.secondary,
+                      backgroundColor: color.secondary.shade200,
+                    ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 10),
-                child: Text(
-                  '${controller.getPercent().toStringAsFixed(2)}%',
-                  style: style.percentValue,
+                Padding(
+                  padding: const EdgeInsets.only(left: 10),
+                  child: Text(
+                    '${snapshot.data!.toStringAsFixed(2)}%',
+                    style: style.percentValue,
+                  ),
                 ),
-              ),
-            ],
-          ),
-        );
-      },
+              ],
+            );
+          }),
     );
   }
 }

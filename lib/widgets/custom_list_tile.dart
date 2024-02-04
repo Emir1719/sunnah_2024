@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sunnah_2024/pages/home.dart';
+import 'package:sunnah_2024/home.dart';
 
 class CustomListItem extends StatelessWidget {
   const CustomListItem({super.key, required this.logo});

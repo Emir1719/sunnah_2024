@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:sunnah_2024/pages/tasks.dart';
-import 'package:sunnah_2024/riverpods/global_riverpods.dart';
-import 'package:sunnah_2024/route/navigate.dart';
+import 'package:get/get.dart';
+import 'package:sunnah_2024/constants/route.dart';
+import 'package:sunnah_2024/controller/task_controller.dart';
 
-class IslandGridview extends ConsumerWidget {
+class IslandGridview extends StatelessWidget {
   const IslandGridview({super.key, required this.id});
   final int id;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
+    final cont = Get.put(TaskController());
+
     return InkWell(
       onTap: () {
-        ref.read(currentCategoryProvider.notifier).state = id;
-        AppNavigate.navigate(context, const Tasks());
+        cont.id = id;
+        Get.toNamed(AppRoute.tasks);
       },
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

@@ -16,7 +16,7 @@ class HomeView extends StatelessWidget {
           children: AppRoute.fragments,
         ),
       ),
-      //bottomNavigationBar: const AppBottomNavBar(),
+      bottomNavigationBar: const AppBottomNavBar(),
     );
   }
 }

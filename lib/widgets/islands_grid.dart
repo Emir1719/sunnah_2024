@@ -16,18 +16,29 @@ class IslandGridview extends StatelessWidget {
         cont.id = id;
         Get.toNamed(AppRoute.tasks);
       },
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset(
-            "assets/images/islands/${id.toString()}.png",
-            width: MediaQuery.of(context).size.width * 0.4,
-          ),
-          Text(
-            "Ada ${id.toString()}",
-            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-          ),
-        ],
+      child: SafeArea(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              "assets/images/islands/${id.toString()}.png",
+              width: MediaQuery.of(context).size.width * 0.25,
+              height: MediaQuery.of(context).size.height * 0.2,
+            ),
+            FutureBuilder(
+              future: cont.database.getCategoryTitleById(id),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(child: CircularProgressIndicator());
+                }
+                return Text(
+                  snapshot.data!,
+                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                );
+              },
+            )
+          ],
+        ),
       ),
     );
   }

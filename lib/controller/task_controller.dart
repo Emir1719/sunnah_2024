@@ -13,6 +13,7 @@ class TaskController extends GetxController {
 
   TaskController() {
     _init();
+    getPercent();
   }
 
   _init() async {
@@ -38,16 +39,15 @@ class TaskController extends GetxController {
       currentTask.value.isComplete = 0;
     }
     await database.updateTask(currentTask.value);
+    await getPercent();
     update();
-    getPercent();
   }
 
   String getButtonName() {
     return currentTask.value.isComplete == 0 ? "Görevi Tamamla" : "Vazgeç";
   }
 
-  Future<double> getPercent() async {
+  Future<void> getPercent() async {
     percent.value = await database.getPercent();
-    return percent.value;
   }
 }

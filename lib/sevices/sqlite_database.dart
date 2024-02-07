@@ -7,6 +7,7 @@ import 'package:sunnah_2024/models/task_model.dart';
 
 class SQLiteDatabase {
   final String _taskTable = "Task";
+  final String _categoryTable = "Category";
   late Database _database;
 
   Future<Database> _openTaskDatabase() async {
@@ -34,6 +35,7 @@ class SQLiteDatabase {
     } else {
       // Varolan db'den verileri alır.
       print("Opening existing database");
+      //Database assetDb = await openDatabase(path, readOnly: false);
     }
 
     // open the database
@@ -75,5 +77,18 @@ class SQLiteDatabase {
       }
     }
     return ((complete / tasks.length) * 100);
+  }
+
+  Future<String> getCategoryTitleById(int id) async {
+    _database = await _openTaskDatabase();
+
+    var result = await _database.query(_categoryTable, columns: ['title'], where: 'id = ?', whereArgs: [id]);
+
+    if (result.isNotEmpty) {
+      return result.first['title'] as String;
+    } else {
+      // Eğer belirtilen id'ye sahip bir kategori bulunamazsa, null veya varsayılan bir değer döndürebilirsiniz.
+      return 'Sünnet';
+    }
   }
 }
